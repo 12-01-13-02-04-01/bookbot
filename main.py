@@ -15,8 +15,5 @@ def main():
     letter_map = get_letter_map(content)
     report = get_report(word_count, letter_map)
 
-    # print(f"Found {word_count} total words")
-    # print(f"{letter_map}")
-
 
 main()
