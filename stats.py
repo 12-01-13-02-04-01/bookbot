@@ -2,13 +2,13 @@ def get_word_count(content: str):
     words = content.split()
 
     word_count = 0
-    for word in words:
+    for word in words:  # pyright: ignore[reportUnusedVariable]
         word_count += 1
 
     return word_count
 
 
-def get_letter_map(content: str):
+def get_letter_map(content: str):  # pyright: ignore[reportUnknownParameterType]
     map = {}
 
     for char in content:
@@ -18,14 +18,14 @@ def get_letter_map(content: str):
         else:
             map[char] += 1
 
-    return map
+    return map  # pyright: ignore[reportUnknownVariableType]
 
 
-def sort_map(item):
-    return item["num"]
+def sort_key(item):  # pyright: ignore[reportUnknownParameterType, reportMissingParameterType]
+    return item["num"]  # pyright: ignore[reportUnknownVariableType]
 
 
-def get_report(word_count: int, map: dict):
+def get_report(word_count: int, map: dict[str, int]):
     char_count_list = []
     print("============ BOOKBOT ============")
     print("Analyzing book found at /books/frankenstein")
@@ -34,11 +34,11 @@ def get_report(word_count: int, map: dict):
     print("--------- Character Count -------")
 
     for key in map:
-        char_count_list.append({"char": key, "num": map[key]})
+        char_count_list.append({"char": key, "num": map[key]})  # pyright: ignore[reportUnknownMemberType]
 
-    char_count_list.sort(key=sort_map, reverse=True)
-    for item in char_count_list:
-        if item["char"].isalpha():
+    char_count_list.sort(key=sort_key, reverse=True)  # pyright: ignore[reportUnknownMemberType]
+    for item in char_count_list:  # pyright: ignore[reportUnknownVariableType]
+        if item["char"].isalpha():  # pyright: ignore[reportUnknownMemberType]
             print(f"{item['char']}: {item['num']}")
 
     print("============= END ===============")
