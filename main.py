@@ -1,18 +1,28 @@
+#!../.venv/bin/python
+
+import asyncio as aio
 import sys
 
-from stats import (  # pyright: ignore[reportUnknownVariableType]
+import tts
 
-    get_letter_map,
-    get_report,
-    get_word_count,
-)
+# from stats import (  # pyright: ignore[reportUnknownVariableType]
+#     get_letter_map,
+#     get_report,
+#     get_word_count,
+# )
 
 
-def get_file_content(path: str):
+def get_content(path: str):
     with open(path) as file:
         content = file.read()
 
         return content
+
+
+# Use method to get next chapter.
+# - needs to track chapter of given book
+def get_chapter():
+    pass
 
 
 def main():
@@ -21,10 +31,9 @@ def main():
         sys.exit(1)
 
     path = sys.argv[1]
-    content = get_file_content(path)
-    word_count = get_word_count(content)
-    letter_map = get_letter_map(content)  # pyright: ignore[reportUnknownVariableType]
-    get_report(word_count, letter_map)  # pyright: ignore[reportUnknownArgumentType]
+    content = get_content(path)
+    title = sys.argv[1].split("/")[1].split(".")
+    tts.make_file(content, title[0])
 
 
 main()
